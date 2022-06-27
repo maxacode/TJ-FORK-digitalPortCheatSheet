@@ -1,5 +1,8 @@
+from _socket import getservbyport
 from tkinter import *
 from socket import getservbyname
+
+# Maks was here
 
 root = Tk()
 
@@ -18,7 +21,11 @@ subBox.insert(0, "Enter a Protocol: ")
 ## Define a function to get the entry from the submission box and use the getservbyname function to find and return the port ##
 def onClick():
     service = subBox.get()
-    result = str(getservbyname(service))
+
+    if service.isdigit():
+        result = str(getservbyport(service))
+    else:
+        result = str(getservbyname(service))
     ansLabel = Label(root, text="The port for " + service + " is: " + result)
     ansLabel.pack()
 
